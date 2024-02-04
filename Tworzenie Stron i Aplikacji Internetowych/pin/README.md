@@ -34,4 +34,4 @@ var correct_code = '2468';
 
 ## Podano poprawny kod
 
-<img src=".4.png" width="300" alt="Podano poprawny kod">
+<img src="4.png" width="300" alt="Podano poprawny kod">
