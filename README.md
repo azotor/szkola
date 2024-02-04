@@ -2,5 +2,5 @@
 
 ## Spis treści
 
-1. [Przypadki użyciaTworzenie Stron i Aplikacji Internetowych ( TSiAI )](./Tworzenie Stron i Aplikacji Internetowych)
-1.1. [Kod weryfikacyjny ( HTML, CSS, JavaScript )](./Tworzenie Stron i Aplikacji Internetowych/pin)
+1. [Tworzenie Stron i Aplikacji Internetowych ( TSiAI )](./Tworzenie%20Stron%20i%20Aplikacji%20Internetowych)
+    1. [Kod weryfikacyjny ( HTML, CSS, JavaScript )](./Tworzenie%20Stron%20i%20Aplikacji%20Internetowych/pin)
