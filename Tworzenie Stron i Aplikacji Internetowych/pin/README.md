@@ -14,7 +14,7 @@ Jeżeli zostaną podane 4 cyfry, a kod nie będzie poprawny to kolor ekranu zmie
 
 Jeżeli zostanie podany poprawny kod tło aplikacji zmieni się na kolor zielony, możliwość zmiany kodu zostanie zablokowana, a na środku ekranu rozwinie się ekran z komunikatem o przydzieleniu dostępu.
 
-Poprawny kod jest zdefiniowany w kodzie JavaScript na sztywno w linijce 2:
+Poprawny kod jest zdefiniowany w kodzie JavaScript na sztywno w linijce `2`:
 
 ```js
 var correct_code = '2468';
