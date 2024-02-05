@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.input {
+    width: 150px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #fffd;
+    font-weight: bold;
+    font-size: 28px;
+    border: 3px solid transparent;
+    transition: all .3s ease-in-out;
+}
+
+.input:nth-child( even ) {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.check {
+    background-color: #fff3;
+    border-color: #fff;
+    color: #fff;
+}
+
+.focus { border-color: #e74c3c; }
