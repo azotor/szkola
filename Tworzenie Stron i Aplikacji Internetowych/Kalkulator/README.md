@@ -15,3 +15,5 @@ Dla budowania liczb dozwolone jest użycie znaków: `1`, `2`, `3`, `4`, `5`, `6`
 Obsługiwane operatory arytmetyczne: `+`, `-`, `*`, `/`.
 
 Wypełnione pole jest blokowane i nie można w nim dokonać zmiany.
+
+<img src="1.png" width="300" alt="Kalkulator">
