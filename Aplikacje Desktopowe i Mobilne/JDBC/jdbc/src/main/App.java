@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -21,6 +22,9 @@ public class App {
 
     String host, user, password;
     int port;
+    ArrayList< String > databases;
+
+    Database db;
 
     JFrame loginFrame, mainFrame;
 
@@ -123,7 +127,7 @@ public class App {
         loginButton.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
-                Database db = new Database();
+                db = new Database();
                 if(
                     db.connect(
                         hostField.getText(),
@@ -137,8 +141,8 @@ public class App {
                     port = Integer.parseInt( portField.getText() );
                     user = userField.getText();
                     password = new String( passField.getPassword() );
-                    mainFrame.setVisible( true );   
                     loginFrame.setVisible( false );
+                    runMainFrame();
 
                 } else logLabel.setText( "Nie udało się połączyć z bazą danych!!!" );
             }
@@ -149,13 +153,22 @@ public class App {
     public void createMainFrame() {
 
         mainFrame = new JFrame();
-        mainFrame.setTitle( "Host: " + host + ":" + String.valueOf( port ) + " | Użytkownik: " + user );
         mainFrame.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
         mainFrame.setSize( new Dimension( 800, 400 ) );
         mainFrame.setLocationRelativeTo( null );
         mainFrame.setResizable( false );
         //mainFrame.setUndecorated( true );
 
+    }
+
+    public void runMainFrame() {
+        mainFrame.setTitle( "Host: " + host + ":" + String.valueOf( port ) + " | Użytkownik: " + user );
+        mainFrame.setVisible( true );
+        databases = db.getDatabases();
+        for( String database : databases ) {
+            System.out.println( database );
+        }
+        db.use( databases.get( 4 ) );
     }
 
 }
