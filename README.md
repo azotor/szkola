@@ -8,3 +8,4 @@
     3. [Kalkulator ( HTML, CSS, JavaScript )](./Tworzenie%20Stron%20i%20Aplikacji%20Internetowych/Kalkulator)
 2. [PyGame](./PyGame)
     1. [01](./PyGame/01)
+3. [Aplikacje Desktopowe i Mobilne](./Aplikacje%20DEktopowe%20i%20Mobilne)
