@@ -15,18 +15,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class App {
 
-    String host, user, password;
+    String host, user, password, base, selectedTable;
     int port;
     ArrayList< String > databases;
+    ArrayList< String > tables;
 
     Database db;
 
     JFrame loginFrame, mainFrame;
+    JPanel databasesPanel, tablesPanel, queryPanel;
 
     public App() {
 
@@ -141,7 +145,8 @@ public class App {
                     port = Integer.parseInt( portField.getText() );
                     user = userField.getText();
                     password = new String( passField.getPassword() );
-                    loginFrame.setVisible( false );
+                    //loginFrame.setVisible( false );
+                    loginFrame.dispose();
                     runMainFrame();
 
                 } else logLabel.setText( "Nie udało się połączyć z bazą danych!!!" );
@@ -163,12 +168,137 @@ public class App {
 
     public void runMainFrame() {
         mainFrame.setTitle( "Host: " + host + ":" + String.valueOf( port ) + " | Użytkownik: " + user );
-        mainFrame.setVisible( true );
+        
+        databasesPanel = new JPanel();
+        databasesPanel.setPreferredSize( new Dimension( 200, 400 ) );
+        mainFrame.add( databasesPanel, BorderLayout.WEST );
+
+        JLabel databasesLabel = new JLabel( "Bazy danych", JLabel.CENTER );
+        databasesLabel.setOpaque(true);
+        databasesLabel.setPreferredSize( new Dimension( 200, 40 ) );
+        databasesLabel.setBackground( Color.decode( "#3498db" ) );
+        databasesLabel.setForeground( Color.WHITE );
+        databasesPanel.add( databasesLabel );
+
+        tablesPanel = new JPanel();
+        tablesPanel.setPreferredSize( new Dimension( 200, 400 ) );
+        mainFrame.add( tablesPanel, BorderLayout.CENTER );
+
+        JLabel tablesLabel = new JLabel( "Tabele", JLabel.CENTER );
+        tablesLabel.setOpaque(true);
+        tablesLabel.setPreferredSize( new Dimension( 200, 40 ) );
+        tablesLabel.setBackground( Color.decode( "#3498db" ) );
+        tablesLabel.setForeground( Color.WHITE );
+        tablesPanel.add( tablesLabel );
+
+        queryPanel = new JPanel();
+        queryPanel.setPreferredSize( new Dimension( 380, 400 ) );
+        mainFrame.add( queryPanel, BorderLayout.EAST );
+
+        JLabel queryLabel = new JLabel( "Rekordy", JLabel.CENTER );
+        queryLabel.setOpaque(true);
+        queryLabel.setPreferredSize( new Dimension( 380, 40 ) );
+        queryLabel.setBackground( Color.decode( "#3498db" ) );
+        queryLabel.setForeground( Color.WHITE );
+        queryPanel.add( queryLabel );
+
         databases = db.getDatabases();
         for( String database : databases ) {
-            System.out.println( database );
+            JButton databaseButton = new JButton( database );
+            databaseButton.setPreferredSize( new Dimension( 180, 30 ) );
+            databasesPanel.add( databaseButton );
+            databaseButton.addActionListener( new ActionListener() {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    base = e.getActionCommand();
+                    db.use( base );
+                    showTables();
+                }
+            });
         }
-        db.use( databases.get( 4 ) );
+
+        mainFrame.setVisible( true );
+    }
+
+    public void showTables() {
+
+        tablesPanel.removeAll();
+        tablesPanel.revalidate();
+        tablesPanel.repaint();
+
+        JLabel tablesLabel = new JLabel( "Tabele", JLabel.CENTER );
+        tablesLabel.setOpaque(true);
+        tablesLabel.setPreferredSize( new Dimension( 200, 40 ) );
+        tablesLabel.setBackground( Color.decode( "#3498db" ) );
+        tablesLabel.setForeground( Color.WHITE );
+        tablesPanel.add( tablesLabel );
+
+        tables = db.getTables();
+        for( String table : tables ) {
+            JButton tableButton = new JButton( table );
+            tableButton.setPreferredSize( new Dimension( 180, 30 ) );
+            tablesPanel.add( tableButton );
+            tableButton.addActionListener( new ActionListener() {
+                @Override
+                public void actionPerformed( ActionEvent e ) {
+                    selectedTable = e.getActionCommand();
+                    showTable();
+
+                }
+            });
+        }
+
+        mainFrame.setVisible( true );
+
+    }
+
+    public void showTable() {
+
+        queryPanel.removeAll();
+        queryPanel.revalidate();
+        queryPanel.repaint();
+
+        ArrayList< ArrayList< String > > rows = db.selectAll( selectedTable );
+
+        String[] header = new String[ rows.get( 0 ).size() ];
+
+        for( int i = 0; i < rows.get( 0 ).size(); i++ ) {
+
+            header[ i ] = rows.get( 0 ).get( i );
+
+        }
+
+        rows.remove( 0 );
+
+        String[][] datas = new String[ rows.size() ][ rows.get( 0 ).size() ];
+
+        for( int i = 0; i < rows.size(); i++ ) {
+
+            ArrayList< String > row = rows.get( i );
+
+            for( int j = 0; j < row.size(); j++ ) {
+
+                datas[ i ][ j ] = row.get( j );
+
+            }
+
+        }
+
+        JLabel queryLabel = new JLabel( "Rekordy", JLabel.CENTER );
+        queryLabel.setOpaque(true);
+        queryLabel.setPreferredSize( new Dimension( 380, 40 ) );
+        queryLabel.setBackground( Color.decode( "#3498db" ) );
+        queryLabel.setForeground( Color.WHITE );
+        queryPanel.add( queryLabel );
+
+        JTable table = new JTable( datas, header );
+        table.setPreferredScrollableViewportSize( table.getPreferredSize() );
+        table.setFillsViewportHeight( true );
+        table.setDefaultEditor( Object.class, null );
+        JScrollPane scroll = new JScrollPane(table);
+        //scroll.setSize( new Dimension( 380, 300 ) );
+
+        queryPanel.add( scroll );
     }
 
 }
