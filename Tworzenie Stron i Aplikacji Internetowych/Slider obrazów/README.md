@@ -17,24 +17,24 @@ Jeżeli do slidera przypisze się tlyko jeden obraz to będzie on wyświetlany b
 W nagłówku `head` należy zaimportować styl slidera:
 
 ```html
-    <link rel="stylesheet" href="./slider/style.css">
+<link rel="stylesheet" href="./slider/style.css">
 ```
 
 Skrypt JS należy zaimporotwać w dowolnym miejscu jako moduł:
 
 ```html
-   <script src="./slider/slider.js" type="module"></script> 
+<script src="./slider/slider.js" type="module"></script> 
 ```
 
 Aby dodać slider do storny należy w dowolnym miescu ciałą `body` umieścić znacznik:
 
 ```html
-    <div
-        id="slider"
-        data-photos="rect.jpg;circle.jpg;triangle.jpg;hexagon.jpg;octagon.jpg"
-        data-timer="3000"
-    >
-    </div>
+<div
+    id="slider"
+    data-photos="rect.jpg;circle.jpg;triangle.jpg;hexagon.jpg;octagon.jpg"
+    data-timer="3000"
+>
+</div>
 ```
 
 gdzie:
