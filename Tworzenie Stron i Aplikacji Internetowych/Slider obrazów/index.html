@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./slider/style.css">
+</head>
+<body>
+    <div class="nav">Slider</div>
+    <div class="content">
+        <!-- SLIDER POCZĄTEK
+            data-photos - to lista plików graficznych zapisanych w katalogu img/slider, jeżeli jest tylko jedna grafika to nie będzie opcji przewijania
+            data-timer - czas automatycznej zmiany grafiki podany w milisekundach - 1000ms = 1s
+        -->
+        <div
+            id="slider"
+            data-photos="rect.jpg;circle.jpg;triangle.jpg;hexagon.jpg;octagon.jpg"
+            data-timer="3000"
+        >
+        </div>
+        <!-- SLIDER KONIEC-->
+
+        <article>
+            <header>Article 1</header>
+            <section>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet explicabo quos adipisci odit molestias officiis similique, temporibus illo, numquam autem ducimus laboriosam eos quas sunt veritatis mollitia, rem facilis dolor.</section>
+        </article>
+        <article>
+            <header>Article 2</header>
+            <section>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet explicabo quos adipisci odit molestias officiis similique, temporibus illo, numquam autem ducimus laboriosam eos quas sunt veritatis mollitia, rem facilis dolor.</section>
+        </article>
+        <article>
+            <header>Article 3</header>
+            <section>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet explicabo quos adipisci odit molestias officiis similique, temporibus illo, numquam autem ducimus laboriosam eos quas sunt veritatis mollitia, rem facilis dolor.</section>
+        </article>
+        <article>
+            <header>Article 4</header>
+            <section>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet explicabo quos adipisci odit molestias officiis similique, temporibus illo, numquam autem ducimus laboriosam eos quas sunt veritatis mollitia, rem facilis dolor.</section>
+        </article>
+    </div>
+    <footer>&copy by TK</footer>
+    <script src="./slider/slider.js" type="module"></script>
+</body>
+</html>

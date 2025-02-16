@@ -1,0 +1,48 @@
+#slider {
+    width: 800px;
+    height: 600px;
+    margin: 30px auto;
+    border: 1px solid #2221;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-repeat: no-repeat, no-repeat;
+}
+
+#slider > .slider-button {
+    width: 70px;
+    height: 100%;
+    background-color: #2228;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#slider > .slider-button:hover {
+    opacity: 1;
+}
+
+#slider > .slider-button::before {
+    display: block;
+    content: "";
+    transition: opacity .3s ease-in-out;
+}
+
+#slider > .slider-button::before {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+}
+
+#slider > .slider-button.prev::before {
+    border-right: 25px solid #fff;
+}
+
+#slider > .slider-button.next::before {
+    border-left: 25px solid #fff;
+}
